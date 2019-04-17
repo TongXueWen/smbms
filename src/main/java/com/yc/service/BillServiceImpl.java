@@ -53,4 +53,9 @@ public class BillServiceImpl implements BillService {
 	public int billUpdate(Bill bill) {
 		return billMapper.updateByPrimaryKeySelective(bill);
 	}
+
+	@Override
+	public int billDelect(Long id) {
+		return billMapper.deleteByPrimaryKey(id);
+	}
 }

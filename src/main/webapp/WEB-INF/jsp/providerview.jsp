@@ -7,7 +7,7 @@
             <strong>你现在所在的位置是:</strong>
             <span>供应商管理页面 >> 信息查看</span>
         </div>
-        <div class="providerView">
+        <div class="providerAdd">
           <s:form id="providerForm" name="providerForm" method="post" action="${pageContext.request.contextPath }/provider/update" modelAttribute="provider">
             <s:hidden path="id"/>
               <div>

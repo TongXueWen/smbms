@@ -41,4 +41,10 @@ public interface BillService {
 	 * @return
 	 */
 	public int billUpdate(Bill bill);
+	
+	/**
+	 * 订单的删除
+	 * @param id
+	 */
+	public int billDelect(Long id);
 }

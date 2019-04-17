@@ -81,10 +81,10 @@
 					<a href="${pageContext.request.contextPath }/provider/providerlist?n=${pageInfo.lastPage}&procontact=${procontact}&proname=${proname}">最后一页</a>
 				&nbsp;&nbsp;
 			</ul>
-		 <span class="page-go-form"><label>跳转至</label>
+		<!--  <span class="page-go-form"><label>跳转至</label>
 	     <input type="text" name="inputPage" id="inputPage" class="page-key" />页
 	     <button type="button" class="page-btn" onClick=''>GO</button>
-		</span>
+		</span> -->
 		</div> 
     </div>
 </section>

@@ -21,11 +21,16 @@
 		$("#rnewpassword").blur(function(){
 			var newpwd = $("#newpassword").val();
 			var rnewpwd = $("#rnewpassword").val();
-			if (newpwd == rnewpwd) {
-				$("#rnewpassword").next().html("密码一致！").css("color","#0f0");
+			if (newpwd != '' && rnewpwd != '') {
+				if (newpwd == rnewpwd) {
+					$("#rnewpassword").next().html("密码一致！").css("color","#0f0");
+				} else {
+					$("#rnewpassword").next().html("密码不一致！").css("color","#f00");
+				}
 			} else {
-				$("#rnewpassword").next().html("密码不一致！").css("color","#f00");
+				$("#rnewpassword").next().html("密码不能为空！").css("color","#f00");
 			}
+			
 		})
 			
 	})

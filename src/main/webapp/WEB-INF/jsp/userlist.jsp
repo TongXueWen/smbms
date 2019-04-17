@@ -75,10 +75,10 @@
 					<a href="${pageContext.request.contextPath }/user/userlist?n=${pageInfo.lastPage}&username=${username}&rolename=${rolename}">最后一页</a>
 				&nbsp;&nbsp;
 			</ul>
-		 <span class="page-go-form"><label>跳转至</label>
+		 <!-- <span class="page-go-form"><label>跳转至</label>
 	     <input type="text" name="inputPage" id="inputPage" class="page-key" />页
 	     <button type="button" class="page-btn" onClick=''>GO</button>
-		</span>
+		</span> -->
 		</div> 
         </div>
     </section>

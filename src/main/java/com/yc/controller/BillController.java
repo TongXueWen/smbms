@@ -107,4 +107,14 @@ public class BillController {
 		map.put("proids",proids);
 		return "billmodify";
 	}
+	
+	/**
+	 * 订单删除操作
+	 * @return
+	 */
+	@RequestMapping("billdel")
+	public String userdel(@RequestParam("id") Long id){
+		billService.billDelect(id);
+		return "redirect:billlist";
+	}
 }

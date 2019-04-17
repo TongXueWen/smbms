@@ -67,7 +67,7 @@
 					<td>
 					<span><a class="viewBill" href="${pageContext.request.contextPath }/bill/billview?id=${bill.id}&flag=update"><img src="${pageContext.request.contextPath }/images/read.png" alt="查看" title="查看"/></a></span>
 					<span><a class="modifyBill" href="${pageContext.request.contextPath }/bill/billmodify?id=${bill.id}&flag=update"><img src="${pageContext.request.contextPath }/images/xiugai.png" alt="修改" title="修改"/></a></span>
-					<span><a class="deleteBill" href=""><img src="${pageContext.request.contextPath }/images/schu.png" alt="删除" title="删除"/></a></span>
+					<span><a class="deleteBill" href="${pageContext.request.contextPath }/bill/billdel?id=${bill.id}"><img src="${pageContext.request.contextPath }/images/schu.png" alt="删除" title="删除"/></a></span>
 					</td>
 				</tr>
 				</c:forEach>
@@ -84,10 +84,10 @@
 				<a href="${pageContext.request.contextPath }/bill/billlist?n=${pageInfo.lastPage}&productname=${productname}&proname=${proname}&ispayment=${ispayment}">最后一页</a>
 			&nbsp;&nbsp;
 		</ul>
-	 <span class="page-go-form"><label>跳转至</label>
+	<!--  <span class="page-go-form"><label>跳转至</label>
      <input type="text" name="inputPage" id="inputPage" class="page-key" />页
-     <button type="button" class="page-btn" onClick=''>GO</button>
-	</span>
+     <button type="button" class="page-btn" onClick=''>GO</button> 
+	</span> -->
   </div>
 </section>
 
