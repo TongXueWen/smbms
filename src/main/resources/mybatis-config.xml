@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<!-- 这个配置使全局的映射器启用或禁用二级缓存-->
+        <setting name="cacheEnabled" value="true" />
+        <setting name="logImpl" value="LOG4J"/>
+		<!-- 指定 MyBatis 如何自动映射列到属性:
+		 PARTIAL 只会自动映射简单, 没有嵌套的结果。
+		 FULL 会自动映射任意复杂的结果(嵌套的或其他情况) -->
+        <setting name="autoMappingBehavior" value="FULL" />  
+		<!--设置超时时间, 它决定驱动等待一个数据库响应的时间 -->
+        <setting name="defaultStatementTimeout" value="25" /> 
+		<!--是否开启自动驼峰命名规则映射，即从经典数据库列名A_COLUMN 到经典 Java 属性名 aColumn 的类似映射。  默认false -->
+        <setting name="mapUnderscoreToCamelCase" value="true" />  
+	</settings>
+	<typeAliases>
+		<package name="com.yc.po"/>
+		<!-- <typeAlias type="com.yc.po.User" alias="user"/> -->
+	</typeAliases>
+	<!-- 配制分页插件 -->
+	<plugins>
+		<plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+	</plugins>
+	<databaseIdProvider type="DB_VENDOR">
+		<property name="MySQL" value="mysql"/>
+		<property name="Oracle" value="orcl"/>
+	</databaseIdProvider>
+	<!-- sql映射文件注册 -->
+	<mappers>
+		<!-- <mapper resource="com/yc/dao/UserMapper.xml"/> -->
+		<!-- <mapper class="com.yc.dao.UserMapper"/> -->
+		<package name="com.yc.dao"/>
+	</mappers>
+</configuration>

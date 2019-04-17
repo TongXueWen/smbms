@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.dao.ProviderMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.po.Provider" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="proCode" property="procode" jdbcType="VARCHAR" />
+    <result column="proName" property="proname" jdbcType="VARCHAR" />
+    <result column="proDesc" property="prodesc" jdbcType="VARCHAR" />
+    <result column="proContact" property="procontact" jdbcType="VARCHAR" />
+    <result column="proPhone" property="prophone" jdbcType="VARCHAR" />
+    <result column="proAddress" property="proaddress" jdbcType="VARCHAR" />
+    <result column="proFax" property="profax" jdbcType="VARCHAR" />
+    <result column="createdBy" property="createdby" jdbcType="BIGINT" />
+    <result column="creationDate" property="creationdate" jdbcType="TIMESTAMP" />
+    <result column="modifyDate" property="modifydate" jdbcType="TIMESTAMP" />
+    <result column="modifyBy" property="modifyby" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, proCode, proName, proDesc, proContact, proPhone, proAddress, proFax, createdBy, 
+    creationDate, modifyDate, modifyBy
+  </sql>
+  <select id="selectByPageAll" resultMap="BaseResultMap">
+  		select * from smbms_provider where 1=1
+  		
+  		<if test="proname !=''">
+  			and proname like concat('%',#{proname},'%')
+  		</if>
+  		<if test="procontact != ''">
+  			and procontact like concat('%',#{procontact},'%')
+  		</if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from smbms_provider
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from smbms_provider
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yc.po.Provider" >
+    insert into smbms_provider (id, proCode, proName, 
+      proDesc, proContact, proPhone, 
+      proAddress, proFax, createdBy, 
+      creationDate, modifyDate, modifyBy
+      )
+    values (#{id,jdbcType=BIGINT}, #{procode,jdbcType=VARCHAR}, #{proname,jdbcType=VARCHAR}, 
+      #{prodesc,jdbcType=VARCHAR}, #{procontact,jdbcType=VARCHAR}, #{prophone,jdbcType=VARCHAR}, 
+      #{proaddress,jdbcType=VARCHAR}, #{profax,jdbcType=VARCHAR}, #{createdby,jdbcType=BIGINT}, 
+      #{creationdate,jdbcType=TIMESTAMP}, #{modifydate,jdbcType=TIMESTAMP}, #{modifyby,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.po.Provider" >
+    insert into smbms_provider
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="procode != null" >
+        proCode,
+      </if>
+      <if test="proname != null" >
+        proName,
+      </if>
+      <if test="prodesc != null" >
+        proDesc,
+      </if>
+      <if test="procontact != null" >
+        proContact,
+      </if>
+      <if test="prophone != null" >
+        proPhone,
+      </if>
+      <if test="proaddress != null" >
+        proAddress,
+      </if>
+      <if test="profax != null" >
+        proFax,
+      </if>
+      <if test="createdby != null" >
+        createdBy,
+      </if>
+      <if test="creationdate != null" >
+        creationDate,
+      </if>
+      <if test="modifydate != null" >
+        modifyDate,
+      </if>
+      <if test="modifyby != null" >
+        modifyBy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="procode != null" >
+        #{procode,jdbcType=VARCHAR},
+      </if>
+      <if test="proname != null" >
+        #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodesc != null" >
+        #{prodesc,jdbcType=VARCHAR},
+      </if>
+      <if test="procontact != null" >
+        #{procontact,jdbcType=VARCHAR},
+      </if>
+      <if test="prophone != null" >
+        #{prophone,jdbcType=VARCHAR},
+      </if>
+      <if test="proaddress != null" >
+        #{proaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="profax != null" >
+        #{profax,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=BIGINT},
+      </if>
+      <if test="creationdate != null" >
+        #{creationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyby != null" >
+        #{modifyby,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.po.Provider" >
+    update smbms_provider
+    <set >
+      <if test="procode != null" >
+        proCode = #{procode,jdbcType=VARCHAR},
+      </if>
+      <if test="proname != null" >
+        proName = #{proname,jdbcType=VARCHAR},
+      </if>
+      <if test="prodesc != null" >
+        proDesc = #{prodesc,jdbcType=VARCHAR},
+      </if>
+      <if test="procontact != null" >
+        proContact = #{procontact,jdbcType=VARCHAR},
+      </if>
+      <if test="prophone != null" >
+        proPhone = #{prophone,jdbcType=VARCHAR},
+      </if>
+      <if test="proaddress != null" >
+        proAddress = #{proaddress,jdbcType=VARCHAR},
+      </if>
+      <if test="profax != null" >
+        proFax = #{profax,jdbcType=VARCHAR},
+      </if>
+      <if test="createdby != null" >
+        createdBy = #{createdby,jdbcType=BIGINT},
+      </if>
+      <if test="creationdate != null" >
+        creationDate = #{creationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifydate != null" >
+        modifyDate = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyby != null" >
+        modifyBy = #{modifyby,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.po.Provider" >
+    update smbms_provider
+    set proCode = #{procode,jdbcType=VARCHAR},
+      proName = #{proname,jdbcType=VARCHAR},
+      proDesc = #{prodesc,jdbcType=VARCHAR},
+      proContact = #{procontact,jdbcType=VARCHAR},
+      proPhone = #{prophone,jdbcType=VARCHAR},
+      proAddress = #{proaddress,jdbcType=VARCHAR},
+      proFax = #{profax,jdbcType=VARCHAR},
+      createdBy = #{createdby,jdbcType=BIGINT},
+      creationDate = #{creationdate,jdbcType=TIMESTAMP},
+      modifyDate = #{modifydate,jdbcType=TIMESTAMP},
+      modifyBy = #{modifyby,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

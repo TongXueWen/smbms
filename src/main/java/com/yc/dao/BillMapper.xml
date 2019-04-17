@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yc.dao.BillMapper" >
+  <resultMap id="BaseResultMap" type="com.yc.po.Bill" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="billCode" property="billcode" jdbcType="VARCHAR" />
+    <result column="productName" property="productname" jdbcType="VARCHAR" />
+    <result column="productDesc" property="productdesc" jdbcType="VARCHAR" />
+    <result column="productUnit" property="productunit" jdbcType="VARCHAR" />
+    <result column="productCount" property="productcount" jdbcType="DECIMAL" />
+    <result column="totalPrice" property="totalprice" jdbcType="DECIMAL" />
+    <result column="isPayment" property="ispayment" jdbcType="INTEGER" />
+    <result column="createdBy" property="createdby" jdbcType="BIGINT" />
+    <result column="creationDate" property="creationdate" jdbcType="TIMESTAMP" />
+    <result column="modifyBy" property="modifyby" jdbcType="BIGINT" />
+    <result column="modifyDate" property="modifydate" jdbcType="TIMESTAMP" />
+    <result column="providerId" property="providerid" jdbcType="INTEGER" />
+  </resultMap>
+  
+  <resultMap id="BillProResultMap" type="com.yc.po.BillPro" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="billCode" property="billcode" jdbcType="VARCHAR" />
+    <result column="productName" property="productname" jdbcType="VARCHAR" />
+    <result column="productDesc" property="productdesc" jdbcType="VARCHAR" />
+    <result column="productUnit" property="productunit" jdbcType="VARCHAR" />
+    <result column="productCount" property="productcount" jdbcType="DECIMAL" />
+    <result column="totalPrice" property="totalprice" jdbcType="DECIMAL" />
+    <result column="isPayment" property="ispayment" jdbcType="INTEGER" />
+    <result column="createdBy" property="createdby" jdbcType="BIGINT" />
+    <result column="creationDate" property="creationdate" jdbcType="TIMESTAMP" />
+    <result column="modifyBy" property="modifyby" jdbcType="BIGINT" />
+    <result column="modifyDate" property="modifydate" jdbcType="TIMESTAMP" />
+    <result column="providerId" property="providerid" jdbcType="INTEGER" />
+    <result column="proName" property="proname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, billCode, productName, productDesc, productUnit, productCount, totalPrice, isPayment, 
+    createdBy, creationDate, modifyBy, modifyDate, providerId
+  </sql>
+  <select id="selectByPageAll" resultMap="BillProResultMap">
+  		select b.*,p.proname from smbms_bill b,smbms_provider p where b.providerid=p.id
+  		
+  		<if test="productname != ''">
+  			and productname like concat('%',#{productname},'%')
+  		</if> 
+  		<if test="proname !=''">
+  			and proname = #{proname}
+  		</if>
+  		<if test="ispayment !=''">
+  			and ispayment = #{ispayment}
+  		</if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from smbms_bill
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from smbms_bill
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.yc.po.Bill" >
+    insert into smbms_bill (id, billCode, productName, 
+      productDesc, productUnit, productCount, 
+      totalPrice, isPayment, createdBy, 
+      creationDate, modifyBy, modifyDate, 
+      providerId)
+    values (#{id,jdbcType=BIGINT}, #{billcode,jdbcType=VARCHAR}, #{productname,jdbcType=VARCHAR}, 
+      #{productdesc,jdbcType=VARCHAR}, #{productunit,jdbcType=VARCHAR}, #{productcount,jdbcType=DECIMAL}, 
+      #{totalprice,jdbcType=DECIMAL}, #{ispayment,jdbcType=INTEGER}, #{createdby,jdbcType=BIGINT}, 
+      #{creationdate,jdbcType=TIMESTAMP}, #{modifyby,jdbcType=BIGINT}, #{modifydate,jdbcType=TIMESTAMP}, 
+      #{providerid,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yc.po.Bill" >
+    insert into smbms_bill
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="billcode != null" >
+        billCode,
+      </if>
+      <if test="productname != null" >
+        productName,
+      </if>
+      <if test="productdesc != null" >
+        productDesc,
+      </if>
+      <if test="productunit != null" >
+        productUnit,
+      </if>
+      <if test="productcount != null" >
+        productCount,
+      </if>
+      <if test="totalprice != null" >
+        totalPrice,
+      </if>
+      <if test="ispayment != null" >
+        isPayment,
+      </if>
+      <if test="createdby != null" >
+        createdBy,
+      </if>
+      <if test="creationdate != null" >
+        creationDate,
+      </if>
+      <if test="modifyby != null" >
+        modifyBy,
+      </if>
+      <if test="modifydate != null" >
+        modifyDate,
+      </if>
+      <if test="providerid != null" >
+        providerId,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="billcode != null" >
+        #{billcode,jdbcType=VARCHAR},
+      </if>
+      <if test="productname != null" >
+        #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="productdesc != null" >
+        #{productdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="productunit != null" >
+        #{productunit,jdbcType=VARCHAR},
+      </if>
+      <if test="productcount != null" >
+        #{productcount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalprice != null" >
+        #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="ispayment != null" >
+        #{ispayment,jdbcType=INTEGER},
+      </if>
+      <if test="createdby != null" >
+        #{createdby,jdbcType=BIGINT},
+      </if>
+      <if test="creationdate != null" >
+        #{creationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyby != null" >
+        #{modifyby,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="providerid != null" >
+        #{providerid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yc.po.Bill" >
+    update smbms_bill
+    <set >
+      <if test="billcode != null" >
+        billCode = #{billcode,jdbcType=VARCHAR},
+      </if>
+      <if test="productname != null" >
+        productName = #{productname,jdbcType=VARCHAR},
+      </if>
+      <if test="productdesc != null" >
+        productDesc = #{productdesc,jdbcType=VARCHAR},
+      </if>
+      <if test="productunit != null" >
+        productUnit = #{productunit,jdbcType=VARCHAR},
+      </if>
+      <if test="productcount != null" >
+        productCount = #{productcount,jdbcType=DECIMAL},
+      </if>
+      <if test="totalprice != null" >
+        totalPrice = #{totalprice,jdbcType=DECIMAL},
+      </if>
+      <if test="ispayment != null" >
+        isPayment = #{ispayment,jdbcType=INTEGER},
+      </if>
+      <if test="createdby != null" >
+        createdBy = #{createdby,jdbcType=BIGINT},
+      </if>
+      <if test="creationdate != null" >
+        creationDate = #{creationdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyby != null" >
+        modifyBy = #{modifyby,jdbcType=BIGINT},
+      </if>
+      <if test="modifydate != null" >
+        modifyDate = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="providerid != null" >
+        providerId = #{providerid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yc.po.Bill" >
+    update smbms_bill
+    set billCode = #{billcode,jdbcType=VARCHAR},
+      productName = #{productname,jdbcType=VARCHAR},
+      productDesc = #{productdesc,jdbcType=VARCHAR},
+      productUnit = #{productunit,jdbcType=VARCHAR},
+      productCount = #{productcount,jdbcType=DECIMAL},
+      totalPrice = #{totalprice,jdbcType=DECIMAL},
+      isPayment = #{ispayment,jdbcType=INTEGER},
+      createdBy = #{createdby,jdbcType=BIGINT},
+      creationDate = #{creationdate,jdbcType=TIMESTAMP},
+      modifyBy = #{modifyby,jdbcType=BIGINT},
+      modifyDate = #{modifydate,jdbcType=TIMESTAMP},
+      providerId = #{providerid,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

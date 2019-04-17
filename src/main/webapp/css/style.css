@@ -1,0 +1,444 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*鐧诲綍椤甸潰*/
+.login_bg {
+    background: url("../images/loginBg.jpg") 0 0 repeat-x;
+}
+
+.loginBox {
+    width: 1000px;
+    margin: 0 auto;
+    background: url("../images/login_bg.jpg") 0 0 no-repeat;
+}
+
+.loginHeader {
+    padding-top: 102px;
+    text-align: center;
+    padding-bottom: 30px;
+}
+
+.loginHeader h1 {
+    color: #fff;
+    text-shadow: 2px 2px #000;
+}
+
+.loginCont {
+    width: 388px;
+    height: 284px;
+    /*border: 1px solid red ;*/
+    margin: 0 auto;
+}
+
+.formBox {
+    position: relative;
+}
+
+/*杈撳叆妗嗛噷榛樿杈撳叆瀛椾綋*/
+::-webkit-input-placeholder {
+    color: rgb(190, 188, 188);
+    /*font-style: italic;*/
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+    color: rgb(190, 188, 188);
+    font-style: italic;
+}
+
+input {
+    outline: none;
+}
+
+.loginForm {
+    background: url("../images/formBg.png") 0 0 no-repeat;
+    width: 320px;
+    height: 140px;
+    border-radius: 8px;
+    padding: 90px 38px 48px 30px;
+    /*border: 1px solid green;*/
+}
+
+.loginForm label {
+    width: 20%;
+    display: inline-block;
+}
+
+.inputbox {
+    height: 60px;
+}
+
+.info {
+    color: red;
+    font-weight:bold; 
+}
+
+.inputbox input {
+    width: 66%;
+    padding: 10px 5px 10px 20px;
+    border: 1px solid rgb(178, 178, 178);
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+    -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+    box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.6) inset;
+
+}
+
+/*杈撳叆妗嗗緱鍒扮劍鐐圭殑鏁堟灉*/
+.inputbox input:active, .providerAdd input:focus,
+.inputbox input:focus {
+    border: 1px solid rgba(91, 90, 90, 0.7);
+    background: rgba(238, 236, 240, 0.2);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+    -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+    box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+}
+
+.subBtn {
+    margin-left: 70px;
+}
+
+/*/!*鐧诲綍椤电櫥褰曞拰閲嶇疆鎸夐挳*!/.providerView a鏄緵搴斿晢绠＄悊椤甸潰涓嬩俊鎭煡鐪嬩篃寰楄繑鍥炴寜閽殑鏍峰紡*/
+input[type='button'], input[type='reset'], .providerView a {
+    width: 30%;
+    cursor: pointer;
+    background: #54a4d7;
+    padding: 6px 18px;
+    font-family: 'BebasNeueRegular', 'Arial Narrow', Arial, sans-serif;
+    color: #fff;
+    font-size: 18px;
+    border: 1px solid #4682be;
+    margin-bottom: 10px;
+    margin-right: 22px;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0px 1px 4px 4px rgba(0, 0, 0, 0.07) inset,
+    0px 0px 0px 3px rgb(254, 254, 254),
+    0px 5px 3px 3px rgb(210, 210, 210);
+    -moz-box-shadow: 0px 1px 4px 4px rgba(0, 0, 0, 0.07) inset,
+    0px 0px 0px 3px rgb(254, 254, 254),
+    0px 5px 3px 3px rgb(210, 210, 210);
+    box-shadow: 0px 1px 4px 4px rgba(0, 0, 0, 0.07) inset,
+    0px 0px 0px 3px rgb(254, 254, 254),
+    0px 5px 3px 3px rgb(210, 210, 210);
+
+}
+
+input[type='submit']:hover, input[type='reset']:hover {
+    background: rgb(74, 179, 198);
+}
+
+input[type='submit']:active, input[type='submit']:focus,
+input[type='reset']:active, input[type='reset']:focus, .providerView a:hover, .providerView a:active {
+    background: #2a5989;
+    border: 1px solid rgb(12, 76, 87);
+    -webkit-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+    -moz-box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+    box-shadow: 0px 1px 6px 4px rgba(0, 0, 0, 0.2) inset;
+}
+
+/*娆㈣繋鐧诲綍椤�*/
+.wColck {
+    width: 88px;
+    height: 108px;
+    margin: 50px;
+    float: left;
+}
+
+.wFont {
+    float: left;
+    margin-top: 50px;
+}
+
+.wFont h2 {
+    font-size: 30px;
+    line-height: 50px;
+    color: #0a5eb6;
+}
+
+.wFont p {
+    font-size: 14px;
+    line-height: 30px;
+    color: #5a656c;
+}
+
+/*渚涘簲鍟嗙鐞嗛〉闈�*/
+.providerTable {
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+.providerTable tr {
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+}
+
+.providerTable tr:nth-child(odd) {
+    background: #f6f7f9;
+}
+
+.providerTable tr:hover {
+    background: #e9f9ca;
+}
+
+.firstTr {
+    border: 1px solid #d6dfe6;
+    background: linear-gradient(to bottom, #f3f8fc, #ebf4f9, #e3f1fa, #e0f0fd, #d8e9fd);
+}
+
+.firstTr th {
+    border-right: 2px solid rgba(209, 218, 223, 0.4);
+}
+
+.providerTable td a {
+    margin-top: 10px;
+    display: inline-block;
+    margin-right: 10px;
+
+}
+
+/*渚涘簲鍟嗙鐞嗛〉闈�-->涓嬮潰鐨勪俊鎭煡鐪嬮〉闈�*/
+.providerView {
+    margin: 20px 0;
+    font-size: 18px;
+    line-height: 30px;
+    padding-top: 30px;
+    border: 1px dashed #3d4f1b;
+}
+
+.providerView strong {
+    display: inline-block;
+    width: 200px;
+    text-align: right;
+}
+
+.providerView span {
+    color: #bd644e;
+}
+
+.providerView a {
+    margin-left: 520px;
+    position: relative;
+    top: 60px;
+}
+
+/*渚涘簲鍟嗙鐞嗛〉闈�-->渚涘簲鍟嗘坊鍔犻〉闈�*/
+.providerAdd {
+    border: 1px solid #9ac70f;
+    padding: 20px;
+    margin: 20px;
+}
+
+.providerAdd form {
+
+}
+
+.providerAdd div {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.providerAdd label {
+    width: 200px;
+    display: inline-block;
+    text-align: right;
+}
+
+.providerAdd input ,.providerAdd select{
+    width: 260px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 4px;
+    outline: none;
+    padding-left: 10px;
+    border: 1px solid #4987c0;
+    box-shadow: 1px 1px 1px #99afc4;
+}
+
+.providerAdd input:focus,.providerAdd select:focus {
+    border: 1px solid #0e56a8;
+    background: rgba(238, 236, 240, 0.2);
+    -webkit-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+    -moz-box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+    box-shadow: 0px 1px 4px 0px rgba(168, 168, 168, 0.9) inset;
+}
+
+.providerAdd span {
+    margin-left: 20px;
+    color: #faca0d;
+}
+
+/*楠岃瘉閿欒*/
+.providerAdd .error span {
+    color: red;
+}
+
+.providerAdd .error input {
+    border: 1px solid red;
+}
+
+/*楠岃瘉鎴愬姛*/
+.providerAdd .ok span {
+    color: green;
+}
+
+.providerAdd .ok input {
+    border: 1px solid green;
+}
+
+.providerAddBtn {
+    margin-left: 240px;
+    padding-top: 20px;
+}
+
+
+.providerAddBtn a ,
+.providerAddBtn input[type='submit'],
+.providerAddBtn input[type='button'] {
+    display: inline-block;
+    width: 100px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 4px;
+    border: transparent;
+    background: linear-gradient(to bottom, #85c0ec, #6aa7d6, #508dc6, #306fb4, #17559e);
+    color: #fff;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 14px;
+    vertical-align: top;
+}
+
+.providerAddBtn a:active,
+.providerAddBtn a:focus,
+.providerAddBtn a:hover,
+.providerAddBtn input[type='submit']:hover,
+.providerAddBtn input[type='submit']:focus{
+    background: linear-gradient(to bottom, #7aaed4, #578bb4, #406e99, #225792, #0d2d54);
+}
+
+.providerAdd input[type='radio']{
+    width: 20px;
+    height: 14px;
+    line-height:12px;
+    border-radius: 4px;
+    outline: none;
+    padding-left: 10px;
+    border: none;
+    box-shadow: none;
+}
+
+/*鐐瑰嚮鍒犻櫎鎸夐挳鍚庡脊鍑虹殑灞�*/
+.zhezhao {
+    display: none;          /* 淇敼杩欓噷鍙互璁╅伄缃╁眰娑堝け*/
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    opacity: 0.7;
+    filter: alpha(opacity=70);
+    overflow: hidden;
+}
+.remove{
+   display: none;       /* 淇敼杩欓噷鍙互璁╁垹闄ゆ娑堝け*/
+    width: 400px;
+    height: 190px;
+    position: absolute;
+    top: 200px;
+    left:500px;
+    background: #fff;
+    border-radius: 4px;
+}
+.removerChid{
+    margin: 4px;
+    border: 1px solid #ccc;
+}
+.removerChid h2{
+    padding-left: 8px;
+    font-size: 14px;
+    line-height: 30px;
+    margin: 4px 8px;
+    border-bottom: 1px solid #99cc33;
+}
+.removeMain{
+    margin-top: 38px;
+    text-align: center;
+    margin-bottom: 30px;
+    border-radius: 4px;
+}
+.removeMain a{
+    padding: 0 20px;
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 4px;
+    border: 1px solid #5e8809;
+    margin-top: 30px;
+    background: #99cc33;
+    color: #fff;
+}
+.removeMain a:hover,.removeMain a:active{
+    background: #679016;
+
+}
+
+/*椤电爜*/
+.page-bar
+{
+	position:relative;
+	margin-top:10px;
+}
+.page-num-ul li
+{
+	float:left;
+}
+.page-num-ul li a
+{
+	display:inline-block;
+	padding:3px 5px;
+	margin:0px 3px;
+	border:1px solid #b8b8b8;
+}
+.page-num-ul a:hover,.page-num-ul .thisclass
+{
+	border:1px solid #c5063f;
+	background-color:#c5063f;
+	color:#FFF;
+	text-decoration:none;
+}
+.page-key
+{
+	width:50px;
+}
+.page-btn
+{
+	border:1px solid #b8b8b8;
+	background-color:#fff3f8;
+	display:inline-block;
+	width:52px;
+	height:25px;
+	line-height:25px;
+	font-weight:20px;
+}
+.page-go-form
+{
+	position:absolute;
+	display:inline-block;
+	right:50px;
+	top:0px;
+}
+.page-go-form input,label,button
+{
+	margin:0px 5px;
+}
+
+
+

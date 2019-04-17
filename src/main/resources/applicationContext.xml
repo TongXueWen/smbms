@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+	 	http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    <!-- 组件扫描 -->
+	<context:component-scan base-package="com.yc"/>
+    <!-- 引入数据库参数文件 -->
+    <context:property-placeholder location="classpath:db.properties"/>
+    <!-- 配制数据源 -->
+    <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
+    	<property name="driverClassName" value="${mysql.driver}"></property>
+    	<property name="url" value="${mysql.url}"></property>
+    	<property name="username" value="${mysql.name}"></property>
+    	<property name="password" value="${mysql.password}"></property>
+    	<!-- 初始化连接数 -->
+		<property name="initialSize" value="30"/>
+		<!-- 最大连接数 -->
+		<property name="maxOpenPreparedStatements" value="150"/>
+		<!-- 最小空闲连接 -->
+		<property name="minIdle" value="10"/>
+		<!-- 最大空闲连接 -->
+		<property name="maxIdle" value="30"/>
+		<!-- 等待超时时间单位毫秒 -->
+		<property name="maxWaitMillis" value="500"/>
+    </bean>
+    <!-- 配制会话工厂 -->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    	<!-- 注入数据源 -->
+    	<property name="dataSource" ref="dataSource"></property>
+    	<!-- 引入mybatis配置文件 -->
+    	<property name="configLocation" value="classpath:mybatis-config.xml"></property>
+    </bean>
+    <!-- 配制数据映射器 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<!-- 为映射器接口文件设置基本的包路径。 你可以使用分号或逗号 作为分隔符设置多于一个的包路径。 -->
+		<property name="basePackage" value="com.yc.dao"/>
+    </bean>
+    <!--配置事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	<!-- 声明使用注解式事务 -->
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<!-- 处理静态资源 -->
+	<mvc:default-servlet-handler/>
+	<!-- mvc的注解驱动 -->
+	<mvc:annotation-driven>
+		<!-- 处理异步请求json数据乱码 -->
+		<mvc:message-converters register-defaults="true">
+			<bean class="org.springframework.http.converter.StringHttpMessageConverter">
+				<property name="defaultCharset" value="utf-8"></property>
+			</bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<!-- 配置视图解释器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/"></property>
+		<property name="suffix" value=".jsp"></property>
+	</bean>
+	
+	<!-- 配制拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/login.html"/>
+			<bean class="com.yc.interceptor.AutoLoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- 页面跳转 -->
+	<mvc:view-controller path="user/frame" view-name="frame"/>
+	<mvc:view-controller path="user/pwdModify" view-name="pwdmodify"/>
+	
+</beans>
