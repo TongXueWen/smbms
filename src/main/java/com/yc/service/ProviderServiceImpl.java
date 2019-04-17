@@ -16,7 +16,7 @@ import com.yc.po.UserRole;
 @Transactional
 public class ProviderServiceImpl implements ProviderService {
 	
-	//Êı¾İ¿â²Ù×÷¶ÔÏó
+	//æ•°æ®åº“æ“ä½œå¯¹è±¡
 	@Autowired
 	private ProviderMapper providerMapper;
 

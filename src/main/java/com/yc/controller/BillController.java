@@ -28,12 +28,12 @@ public class BillController {
 	@Autowired
 	private BillService billService;
 	
-	//sessionÓò¶ÔÏó
+	//sessionåŸŸå¯¹è±¡
 	@Autowired
 	private HttpSession session;
 	
 	/**
-	 * Ìø×ªµ½¶©µ¥¹ÜÀíÒ³Ãæ
+	 * è·³è½¬åˆ°è®¢å•ç®¡ç†é¡µé¢
 	 * @return
 	 */
 	@GetMapping("billlist")
@@ -44,9 +44,9 @@ public class BillController {
 			@RequestParam(value="n",defaultValue="1")Integer n,
 			@RequestParam(value="pageSize",defaultValue="5")Integer pageSize,
 			Map<String,Object> map){
-		//»ñÈ¡¶©µ¥ÁĞ±íĞÅÏ¢
+		//è·å–è®¢å•åˆ—è¡¨ä¿¡æ¯
 		PageInfo pageInfo = billService.getBillProListPage(productname, proname, ispayment, n, pageSize);
-		//»ñÈ¡¹©Ó¦ÉÌÁĞ±íĞÅÏ¢
+		//è·å–ä¾›åº”å•†åˆ—è¡¨ä¿¡æ¯
 		List<String> proNames = billService.getProNames();
 		map.put("pageInfo", pageInfo);
 		map.put("proNames",proNames);
@@ -70,7 +70,7 @@ public class BillController {
 	}
 	
 	/**
-	 * Ìø×ªµ½¶©µ¥ĞŞ¸ÄÒ³Ãæ
+	 * è·³è½¬åˆ°è®¢å•ä¿®æ”¹é¡µé¢
 	 * @return
 	 */
 	@GetMapping("billmodify")
@@ -79,7 +79,7 @@ public class BillController {
 	}
 	
 	/**
-	 * Ìø×ªµ½¶©µ¥²é¿´Ò³Ãæ
+	 * è·³è½¬åˆ°è®¢å•æŸ¥çœ‹é¡µé¢
 	 * @return
 	 */
 	@GetMapping("billview")
@@ -89,14 +89,14 @@ public class BillController {
 	
 	
 	/**
-	 * ¸üĞÂ¶©µ¥ĞÅÏ¢
+	 * æ›´æ–°è®¢å•ä¿¡æ¯
 	 * @return
 	 */
 	@PostMapping("update")
 	public String userupdate(Bill bill,Map<String,Object> map){
-		//ĞŞ¸ÄÊ±¼ä
+		//ä¿®æ”¹æ—¶é—´
 		bill.setModifydate(new Date());
-		//ĞŞ¸ÄÈË
+		//ä¿®æ”¹äºº
 		User onlineUser = (User)session.getAttribute("user");
 		if(onlineUser != null){
 			bill.setModifyby(onlineUser.getId());

@@ -11,31 +11,32 @@ public interface ProviderService {
 	public PageInfo getProviderListPage(String proname, String procontact, Integer n,Integer pageSize);
 	
 	/**
-	 * Í¨¹ıid²éÑ¯¹©Ó¦ÉÌĞÅÏ¢
+	 * é€šè¿‡idæŸ¥è¯¢ä¾›åº”å•†ä¿¡æ¯
 	 * @param id
 	 * @return
 	 */
 	public Provider getProById(Long id);
 	
 	/**
-	 * ¹©Ó¦ÉÌĞÅÏ¢ĞŞ¸Ä
+	 * ä¾›åº”å•†ä¿¡æ¯ä¿®æ”¹
 	 * @param provider
 	 * @return
 	 */
 	public int proUpdate(Provider provider);
 	
 	/**
-	 * ¹©Ó¦ÉÌĞÅÏ¢É¾³ı
+	 * ä¾›åº”å•†ä¿¡æ¯åˆ é™¤
 	 * @param id
 	 * @return
 	 */
 	public int proDelect(Long id);
 	
 	/**
-	 * ¹©Ó¦ÉÌµÄÔö¼Ó
+	 * ä¾›åº”å•†çš„å¢åŠ 
 	 * @param provider
 	 * @return
 	 */
 	public int proAdd(Provider provider);
+
 
 }

@@ -26,14 +26,14 @@ public interface UserService {
 	public int userDelect(Long id);
 	
 	/**
-	 * 用户增加
+	 * 鐢ㄦ埛澧炲姞
 	 * @param user
 	 * @return
 	 */
 	public int userAdd(User user);
 	
 	/**
-	 * 用户密码修改
+	 * 鐢ㄦ埛瀵嗙爜淇敼
 	 * @param userpassword
 	 * @param id
 	 * @return

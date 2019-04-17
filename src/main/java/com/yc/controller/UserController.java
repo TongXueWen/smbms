@@ -28,15 +28,15 @@ import com.yc.util.ResultData;
 @Controller
 public class UserController {
 
-	//ÒµÎñ¶ÔÏó
+	//ä¸šåŠ¡å¯¹è±¡
 	@Autowired
 	private UserService userService;
-	//sessionÓò¶ÔÏó
+	//sessionåŸŸå¯¹è±¡
 	@Autowired
 	private HttpSession session;
 	
 	/**
-	 * ÓÃ»§µÇÂ¼
+	 * ç”¨æˆ·ç™»å½•
 	 * @param userCode
 	 * @param password
 	 * @return
@@ -46,23 +46,23 @@ public class UserController {
 	public String gologin(String userCode,String password){
 		ResultData rd = userService.goLogin(userCode, password);
 		if(rd.getData() != null){
-			//°ÑÓÃ»§ĞÅÏ¢´æµ½sessionÓò,±£´æÓÃ»§µÄÔÚÏß×´Ì¬
+			//æŠŠç”¨æˆ·ä¿¡æ¯å­˜åˆ°sessionåŸŸ,ä¿å­˜ç”¨æˆ·çš„åœ¨çº¿çŠ¶æ€
 			session.setAttribute("user",rd.getData());
 		}
-		//·µ»ØjsonÊı¾İµ½¿Í»§¶Ë
+		//è¿”å›jsonæ•°æ®åˆ°å®¢æˆ·ç«¯
 		System.out.println(JSONObject.toJSONString(rd));
 		return JSONObject.toJSONString(rd);
 	}
 	
 	/**
-	 * ÍË³öÏµÍ³¹¦ÄÜ
+	 * é€€å‡ºç³»ç»ŸåŠŸèƒ½
 	 * @return
 	 */
 	@GetMapping("logout")
 	public String logout(HttpServletResponse response){
-		//É¾³ısessionÓòÀïÃæÓÃ»§ĞÅÏ¢
+		//åˆ é™¤sessionåŸŸé‡Œé¢ç”¨æˆ·ä¿¡æ¯
 		session.removeAttribute("user");
-		//É¾³ıcookie
+		//åˆ é™¤cookie
 		Cookie cookie = new Cookie("usercode","-1");
 		cookie.setMaxAge(0);
 		cookie.setPath("/");
@@ -71,7 +71,7 @@ public class UserController {
 	}
 	
 	/**
-	 * ¾ÉÃÜÂëÑéÖ¤
+	 * æ—§å¯†ç éªŒè¯
 	 * @param pwd
 	 * @param id
 	 * @return
@@ -84,7 +84,7 @@ public class UserController {
 	}
 	
 	/**
-	 * ÃÜÂëĞŞ¸Ä
+	 * å¯†ç ä¿®æ”¹
 	 * @param userpassword
 	 * @param id
 	 * @return
@@ -97,7 +97,7 @@ public class UserController {
 	}
 	
 	/**
-	 * ·ÖÒ³Õ¹Ê¾ÓÃ»§ĞÅÏ¢
+	 * åˆ†é¡µå±•ç¤ºç”¨æˆ·ä¿¡æ¯
 	 * @param username
 	 * @param rolename
 	 * @param n
@@ -112,9 +112,9 @@ public class UserController {
 			@RequestParam(value="n",defaultValue="1")Integer n,
 			@RequestParam(value="pageSize",defaultValue="5")Integer pageSize,
 			Map<String,Object> map){
-		//»ñÈ¡ÓÃ»§ÁĞ±íĞÅÏ¢
+		//è·å–ç”¨æˆ·åˆ—è¡¨ä¿¡æ¯
 		PageInfo pageInfo = userService.getUserListPage(username,rolename,n, pageSize);
-		//»ñÈ¡½ÇÉ«Ãû³ÆÁĞ±íĞÅÏ¢
+		//è·å–è§’è‰²åç§°åˆ—è¡¨ä¿¡æ¯
 		List<String> roleNames = userService.getRoleNames();
 		map.put("pageInfo", pageInfo);
 		map.put("roleNames",roleNames);
@@ -136,7 +136,7 @@ public class UserController {
 	}
 	
 	/**
-	 * Ìø×ªµ½ÓÃ»§¸üĞÂÒ³Ãæ
+	 * è·³è½¬åˆ°ç”¨æˆ·æ›´æ–°é¡µé¢
 	 * @return
 	 */
 	@GetMapping("usermodify")
@@ -145,7 +145,7 @@ public class UserController {
 	}
 	
 	/**
-	 * Ìø×ªµ½ÓÃ»§²é¿´Ò³Ãæ
+	 * è·³è½¬åˆ°ç”¨æˆ·æŸ¥çœ‹é¡µé¢
 	 * @return
 	 */
 	@GetMapping("userview")
@@ -154,21 +154,21 @@ public class UserController {
 	}
 	
 	/**
-	 * Ìø×ªµ½ÓÃ»§Ôö¼ÓÒ³Ãæ
+	 * è·³è½¬åˆ°ç”¨æˆ·å¢åŠ é¡µé¢
 	 * @return
 	 */
 	@GetMapping("useradd")
 	public String useradd(
 			@RequestParam(value="rolename",defaultValue="")String rolename,
 			Map<String,Object> map){
-		//»ñÈ¡½ÇÉ«Ãû³ÆÁĞ±íĞÅÏ¢
+		//è·å–è§’è‰²åç§°åˆ—è¡¨ä¿¡æ¯
 		List<Role> roles = userService.getRoleNameAndIds();
 		map.put("roles",roles);
 		return "useradd";
 	}
 		
 	/**
-	 * ²é¿´ÓÃ»§ĞÅÏ¢
+	 * æŸ¥çœ‹ç”¨æˆ·ä¿¡æ¯
 	 * @return
 	 */
 	@RequestMapping("userselect")
@@ -179,7 +179,7 @@ public class UserController {
 	}
 	
 	/**
-	 * ÓÃ»§É¾³ı²Ù×÷
+	 * ç”¨æˆ·åˆ é™¤æ“ä½œ
 	 * @return
 	 */
 	@RequestMapping("userdel")
@@ -189,14 +189,14 @@ public class UserController {
 	}
 		
 	/**
-	 * ¸üĞÂÓÃ»§ĞÅÏ¢
+	 * æ›´æ–°ç”¨æˆ·ä¿¡æ¯
 	 * @return
 	 */
 	@PostMapping("update")
 	public String userupdate(User user,Map<String,Object> map){
-		//ĞŞ¸ÄÊ±¼ä
+		//ä¿®æ”¹æ—¶é—´
 		user.setModifydate(new Date());
-		//ĞŞ¸ÄÈË
+		//ä¿®æ”¹äºº
 		User onlineUser = (User)session.getAttribute("user");
 		if(onlineUser != null){
 			user.setModifyby(onlineUser.getId());
@@ -209,14 +209,14 @@ public class UserController {
 	}
 	
 	/**
-	 * Ôö¼ÓÓÃ»§ĞÅÏ¢
+	 * å¢åŠ ç”¨æˆ·ä¿¡æ¯
 	 * @return
 	 */
 	@PostMapping("add")
 	public String useradd(User user,Map<String,Object> map){
 	
 		user.setCreationdate(new Date());		
-		//ĞŞ¸ÄÈË
+		//ä¿®æ”¹äºº
 		User onlineUser = (User)session.getAttribute("user");
 		if(onlineUser != null){
 			user.setCreatedby(onlineUser.getId());

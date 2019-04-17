@@ -17,7 +17,7 @@ import com.yc.po.Provider;
 @Transactional
 public class BillServiceImpl implements BillService {
 
-	//Êı¾İ¿â²Ù×÷¶ÔÏó
+	//æ•°æ®åº“æ“ä½œå¯¹è±¡
 	@Autowired
 	private BillMapper billMapper;
 	
@@ -32,7 +32,7 @@ public class BillServiceImpl implements BillService {
 	public PageInfo getBillProListPage(String productname, String proname, String ispayment, Integer n,
 			Integer pageSize) {
 		//PageHelper page = new PageHelper();
-		//ÉèÖÃÒ³ÂëºÍÃ¿Ò³¼ÇÂ¼ÊıµÄÓï¾ä£¬ºóÃæ±ØĞë¸úÉÏ²éÑ¯Óï¾ä£¬ÖĞ¼ä²»ÄÜ¼ÓÈÎºÎ´úÂë
+				//è®¾ç½®é¡µç å’Œæ¯é¡µè®°å½•æ•°çš„è¯­å¥ï¼Œåé¢å¿…é¡»è·Ÿä¸ŠæŸ¥è¯¢è¯­å¥ï¼Œä¸­é—´ä¸èƒ½åŠ ä»»ä½•ä»£ç 
 		PageHelper.startPage(n,pageSize);
 		List<BillPro> billpro = billMapper.selectByPageAll(productname,proname,ispayment);
 		PageInfo<BillPro> pageInfo = new PageInfo<BillPro>(billpro,3);

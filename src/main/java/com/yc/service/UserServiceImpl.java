@@ -20,112 +20,113 @@ import com.yc.util.ResultData;
 @Transactional
 public class UserServiceImpl implements UserService{
 	
-	//Êı¾İ¿â²Ù×÷¶ÔÏó
-	@Autowired
-	private UserMapper userMapper;
-	@Autowired
-	private RoleMapper roleMapper;
-	
-	/**
-	 * µÇÂ¼ÒµÎñ´¦Àí
-	 */
-	@Override
-	public ResultData goLogin(String userCode,String password) {
-		User user = userMapper.SelectByUserCode(userCode);
-		ResultData rd = new ResultData();
-		if(user == null){//ÅĞ¶ÏÓÃ»§±àÂëÊÇ·ñ´íÎó
-			rd.setMsg("ÓÃ»§±àÂë´íÎó!");
-			rd.setFlag(1);
-			return rd;
-		}
-		if(!password.equals(user.getUserpassword())){ //ÅĞ¶ÏÃÜÂëÊÇ·ñÕıÈ·
-			rd.setMsg("ÓÃ»§ÃÜÂë´íÎó!");
-			rd.setFlag(2);
-			return rd;
-		}
-		rd.setMsg("µÇÂ¼³É¹¦");
-		rd.setFlag(0);
-		rd.setData(user);
-		return rd;
-	}
-	
-	/**
-	 * ÑéÖ¤¾ÉÃÜÂëÊÇ·ñÕıÈ·
-	 */
-	@Override
-	public ResultData isPwd(String pwd, Long id) {
-		User user = userMapper.selectByPrimaryKey(id);
-		ResultData rd = new ResultData();
-		if(user != null){
-			if(pwd.equals(user.getUserpassword())){
-				rd.setFlag(0);
-				rd.setMsg("ÃÜÂëÕıÈ·!");
-			}else{
+	//æ•°æ®åº“æ“ä½œå¯¹è±¡
+		@Autowired
+		private UserMapper userMapper;
+		@Autowired
+		private RoleMapper roleMapper;
+		
+		/**
+		 * ç™»å½•ä¸šåŠ¡å¤„ç†
+		 */
+		@Override
+		public ResultData goLogin(String userCode,String password) {
+			User user = userMapper.SelectByUserCode(userCode);
+			ResultData rd = new ResultData();
+			if(user == null){//åˆ¤æ–­ç”¨æˆ·ç¼–ç æ˜¯å¦é”™è¯¯
+				rd.setMsg("ç”¨æˆ·ç¼–ç é”™è¯¯!");
 				rd.setFlag(1);
-				rd.setMsg("ÃÜÂë´íÎó!");
+				return rd;
 			}
-		}else{
-			rd.setFlag(2);
-			rd.setMsg("Î´Öª´íÎó!");
+			if(!password.equals(user.getUserpassword())){ //åˆ¤æ–­å¯†ç æ˜¯å¦æ­£ç¡®
+				rd.setMsg("ç”¨æˆ·å¯†ç é”™è¯¯!");
+				rd.setFlag(2);
+				return rd;
+			}
+			rd.setMsg("ç™»å½•æˆåŠŸ");
+			rd.setFlag(0);
+			rd.setData(user);
+			return rd;
 		}
-		return rd;
-	}
-	
-	/**
-	 * ·ÖÒ³²éÑ¯ÓÃ»§ĞÅÏ¢
-	 */
-	@Override
-	public PageInfo getUserListPage(String username,String rolename,Integer n, Integer pageSize) {
-		//PageHelper page = new PageHelper();
-		//ÉèÖÃÒ³ÂëºÍÃ¿Ò³¼ÇÂ¼ÊıµÄÓï¾ä£¬ºóÃæ±ØĞë¸úÉÏ²éÑ¯Óï¾ä£¬ÖĞ¼ä²»ÄÜ¼ÓÈÎºÎ´úÂë
-		PageHelper.startPage(n,pageSize);
-		List<UserRole> userRoles = userMapper.selectByPageAll(username,rolename);
-		PageInfo<UserRole> pageInfo = new PageInfo<UserRole>(userRoles,3);
-		return pageInfo;
-	}
-	
-	/**
-	 * ²éÑ¯½ÇÉ«Ãû³ÆÁĞ±í
-	 */
-	@Override
-	public List<String> getRoleNames() {
-		return roleMapper.selectRoleNameByAll();
-	}
-	
-	/**
-	 * ¸ù¾İID²éÕÒÓÃ»§
-	 */
-	@Override
-	public User getUserById(Long id) {
-		return userMapper.selectByPrimaryKey(id);
-	}
+		
+		/**
+		 * éªŒè¯æ—§å¯†ç æ˜¯å¦æ­£ç¡®
+		 */
+		@Override
+		public ResultData isPwd(String pwd, Long id) {
+			User user = userMapper.selectByPrimaryKey(id);
+			ResultData rd = new ResultData();
+			if(user != null){
+				if(pwd.equals(user.getUserpassword())){
+					rd.setFlag(0);
+					rd.setMsg("å¯†ç æ­£ç¡®!");
+				}else{
+					rd.setFlag(1);
+					rd.setMsg("å¯†ç é”™è¯¯!");
+				}
+			}else{
+				rd.setFlag(2);
+				rd.setMsg("æœªçŸ¥é”™è¯¯!");
+			}
+			return rd;
+		}
+		
+		/**
+		 * åˆ†é¡µæŸ¥è¯¢ç”¨æˆ·ä¿¡æ¯
+		 */
+		@Override
+		public PageInfo getUserListPage(String username,String rolename,Integer n, Integer pageSize) {
+			//PageHelper page = new PageHelper();
+			//è®¾ç½®é¡µç å’Œæ¯é¡µè®°å½•æ•°çš„è¯­å¥ï¼Œåé¢å¿…é¡»è·Ÿä¸ŠæŸ¥è¯¢è¯­å¥ï¼Œä¸­é—´ä¸èƒ½åŠ ä»»ä½•ä»£ç 
+			PageHelper.startPage(n,pageSize);
+			List<UserRole> userRoles = userMapper.selectByPageAll(username,rolename);
+			PageInfo<UserRole> pageInfo = new PageInfo<UserRole>(userRoles,3);
+			return pageInfo;
+		}
+		
+		/**
+		 * æŸ¥è¯¢è§’è‰²åç§°åˆ—è¡¨
+		 */
+		@Override
+		public List<String> getRoleNames() {
+			return roleMapper.selectRoleNameByAll();
+		}
+		
+		/**
+		 * æ ¹æ®IDæŸ¥æ‰¾ç”¨æˆ·
+		 */
+		@Override
+		public User getUserById(Long id) {
+			return userMapper.selectByPrimaryKey(id);
+		}
 
-	@Override
-	public List<Role> getRoleNameAndIds() {
-		return roleMapper.selectRoleNameAndIdByAll();
-	}
+		@Override
+		public List<Role> getRoleNameAndIds() {
+			return roleMapper.selectRoleNameAndIdByAll();
+		}
 
-	@Override
-	public int userUpdate(User user) {
-		return userMapper.updateByPrimaryKeySelective(user);
-	}
+		@Override
+		public int userUpdate(User user) {
+			return userMapper.updateByPrimaryKeySelective(user);
+		}
 
-	@Override
-	public int userDelect(Long id) {
-		return userMapper.deleteByPrimaryKey(id);
-	}
+		@Override
+		public int userDelect(Long id) {
+			return userMapper.deleteByPrimaryKey(id);
+		}
 
-	/**
-	 * ÓÃ»§Ôö¼Ó
-	 */
-	@Override
-	public int userAdd(User user) {		
-		return userMapper.insertSelective(user);
-	}
+		/**
+		 * ç”¨æˆ·å¢åŠ 
+		 */
+		@Override
+		public int userAdd(User user) {		
+			return userMapper.insertSelective(user);
+		}
 
-	@Override
-	public int pwdupdate(String userpassword, Long id) { 
-		return userMapper.updatepwd(userpassword, id);
-	}
+		@Override
+		public int pwdupdate(String userpassword, Long id) { 
+			return userMapper.updatepwd(userpassword, id);
+		}
+
 
 }

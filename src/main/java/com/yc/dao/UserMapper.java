@@ -29,7 +29,7 @@ public interface UserMapper {
     List<UserRole> selectByPageAll(@Param("username")String username,@Param("rolename")String rolename);
    
     /**
-     * ÃÜÂëĞŞ¸Ä
+     * å¯†ç ä¿®æ”¹
      * @param userpassword
      * @param id
      * @return

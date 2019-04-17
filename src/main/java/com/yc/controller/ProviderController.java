@@ -27,7 +27,7 @@ public class ProviderController {
 	@Autowired
 	private ProviderService providerService;
 	
-	//sessionÓò¶ÔÏó
+	//sessionåŸŸå¯¹è±¡
 	@Autowired
 	private HttpSession session;
 	
@@ -38,7 +38,7 @@ public class ProviderController {
 			@RequestParam(value="n",defaultValue="1")Integer n,
 			@RequestParam(value="pageSize",defaultValue="5")Integer pageSize,
 			Map<String,Object> map){
-		//»ñÈ¡ÓÃ»§ÁĞ±íĞÅÏ¢
+		//è·å–ç”¨æˆ·åˆ—è¡¨ä¿¡æ¯
 		PageInfo pageInfo = providerService.getProviderListPage(proname, procontact, n, pageSize);
 		
 		map.put("pageInfo", pageInfo);	
@@ -58,14 +58,14 @@ public class ProviderController {
 	}
 	
 	/**
-	 * ¸üĞÂ¹©Ó¦ÉÌĞÅÏ¢
+	 * æ›´æ–°ä¾›åº”å•†ä¿¡æ¯
 	 * @return
 	 */
 	@PostMapping("update")
 	public String proupdate(Provider provider,Map<String,Object> map){
-		//ĞŞ¸ÄÊ±¼ä
+		//ä¿®æ”¹æ—¶é—´
 		provider.setModifydate(new Date());
-		//ĞŞ¸ÄÈË
+		//ä¿®æ”¹äºº
 		User onlineUser = (User)session.getAttribute("user");
 		if(onlineUser != null){
 			provider.setModifyby(onlineUser.getId());
@@ -76,7 +76,7 @@ public class ProviderController {
 	}
 	
 	/**
-	 * Ìø×ªµ½¹©Ó¦ÉÌ¸üĞÂÒ³Ãæ
+	 * è·³è½¬åˆ°ä¾›åº”å•†æ›´æ–°é¡µé¢
 	 * @return
 	 */
 	@GetMapping("providermodify")
@@ -85,7 +85,7 @@ public class ProviderController {
 	}
 	
 	/**
-	 * Ìø×ªµ½¹©Ó¦ÉÌ²é¿´Ò³Ãæ
+	 * è·³è½¬åˆ°ä¾›åº”å•†æŸ¥çœ‹é¡µé¢
 	 * @return
 	 */
 	@GetMapping("providerview")
@@ -94,7 +94,7 @@ public class ProviderController {
 	}
 	
 	/**
-	 * Ìø×ªµ½¹©Ó¦ÉÌÔö¼ÓÒ³Ãæ
+	 * è·³è½¬åˆ°ä¾›åº”å•†å¢åŠ é¡µé¢
 	 * @return
 	 */
 	@GetMapping("provideradd")
@@ -103,7 +103,7 @@ public class ProviderController {
 	}
 	
 	/**
-	 * ¹©Ó¦ÉÌÉ¾³ı²Ù×÷
+	 * ä¾›åº”å•†åˆ é™¤æ“ä½œ
 	 * @return
 	 */
 	@RequestMapping("providerdel")
@@ -113,14 +113,14 @@ public class ProviderController {
 	}
 	
 	/**
-	 * Ôö¼Ó¹©Ó¦ÉÌĞÅÏ¢
+	 * å¢åŠ ä¾›åº”å•†ä¿¡æ¯
 	 * @return
 	 */
 	@PostMapping("add")
 	public String useradd(Provider provider,Map<String,Object> map){
 	
 		provider.setCreationdate(new Date());		
-		//ĞŞ¸ÄÈË
+		//ä¿®æ”¹äºº
 		User onlineUser = (User)session.getAttribute("user");
 		if(onlineUser != null){
 			provider.setCreatedby(onlineUser.getId());

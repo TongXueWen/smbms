@@ -11,31 +11,31 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import com.yc.dao.UserMapper;
 import com.yc.po.User;
 /**
- * ×Ô¶¯µÇÂ¼µÄÀ¹½ØÆ÷
+ * è‡ªåŠ¨ç™»å½•çš„æ‹¦æˆªå™¨
  * @author Administrator
  *
  */
 public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 	
-	//ÒµÎñ¶ÔÏó
+	//ä¸šåŠ¡å¯¹è±¡
 	@Autowired
 	private UserMapper userMapper;
 	
 	/**
-	 * ÔÚÖ´ĞĞÄ¿±ê·½·¨Ö®Ç°Ö´ĞĞ
+	 * åœ¨æ‰§è¡Œç›®æ ‡æ–¹æ³•ä¹‹å‰æ‰§è¡Œ
 	 */
 	@Override
 	public boolean preHandle(HttpServletRequest request,
 			HttpServletResponse response, Object handler) throws Exception {
-		//»ñÈ¡cookieĞÅÏ¢
+		//è·å–cookieä¿¡æ¯
 		Cookie[] cookies = request.getCookies();
 		if(cookies != null){
 			for (Cookie cookie : cookies) {
 				if("usercode".equals(cookie.getName())){
-					//»ñÈ¡ÓÃ»§±àºÅ
+					//è·å–ç”¨æˆ·ç¼–å·
 					String usercode = cookie.getValue();
 					System.out.println(usercode);
-					//²éÑ¯ÓÃ»§ĞÅÏ¢
+					//æŸ¥è¯¢ç”¨æˆ·ä¿¡æ¯
 					User user = userMapper.SelectByUserCode(usercode);
 					System.out.println(user);
 					if(user != null){
@@ -51,7 +51,7 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 	}
 	
 	/**
-	 * Õâ¸ö·½·¨ÔÚDispatcherServletÍêÈ«´¦ÀíÇëÇóºóÖ´ĞĞ£¬¿ÉÒÔÓÃÀ´Ò»¸ö×ÊÔ´ÇåÀíµÄ²Ù×÷
+	 * è¿™ä¸ªæ–¹æ³•åœ¨DispatcherServletå®Œå…¨å¤„ç†è¯·æ±‚åæ‰§è¡Œï¼Œå¯ä»¥ç”¨æ¥ä¸€ä¸ªèµ„æºæ¸…ç†çš„æ“ä½œ
 	 */
 	@Override
 	public void afterCompletion(HttpServletRequest request,
@@ -62,7 +62,7 @@ public class AutoLoginInterceptor extends HandlerInterceptorAdapter{
 	}
 	
 	/**
-	 * ÔÚÖ´ĞĞÄ¿±ê·½·¨Ö®ºóÓëäÖÈ¾ÊÓÍ¼Ö®Ç°Ö´ĞĞ
+	 * åœ¨æ‰§è¡Œç›®æ ‡æ–¹æ³•ä¹‹åä¸æ¸²æŸ“è§†å›¾ä¹‹å‰æ‰§è¡Œ
 	 */
 	@Override
 	public void postHandle(HttpServletRequest request,

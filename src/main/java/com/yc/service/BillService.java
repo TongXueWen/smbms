@@ -13,19 +13,19 @@ public interface BillService {
 	public Bill getBillById(Long id);
 	
 	/**
-	 * »ñÈ¡¹©Ó¦ÉÌÃû³Æ
+	 * è·å–ä¾›åº”å•†åç§°
 	 * @return
 	 */
 	public List<String> getProNames();
 	
 	/**
-	 * »ñÈ¡¹©Ó¦ÉÌidºÍÃû³Æ
+	 * è·å–ä¾›åº”å•†idå’Œåç§°
 	 * @return
 	 */
 	public List<Provider> getProNameAndIdByAll();
 	
 	/**
-	 * ¶©µ¥·ÖÒ³²éÑ¯
+	 * è®¢å•åˆ†é¡µæŸ¥è¯¢
 	 * @param productname
 	 * @param proname
 	 * @param ispayname
@@ -36,7 +36,7 @@ public interface BillService {
 	public PageInfo getBillProListPage(String productname,String proname,String ispayment,Integer n,Integer pageSize);
 
 	/**
-	 * ¶©µ¥µÄĞŞ¸Ä
+	 * è®¢å•çš„ä¿®æ”¹
 	 * @param bill
 	 * @return
 	 */

@@ -21,7 +21,7 @@ public interface ProviderMapper {
     int updateByPrimaryKey(Provider record);
     
     /**
-     * ¹©Ó¦ÉÌĞÅÏ¢²éÑ¯
+     * ä¾›åº”å•†ä¿¡æ¯æŸ¥è¯¢
      * @param procode
      * @param proname
      * @return
