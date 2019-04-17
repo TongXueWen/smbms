@@ -1,7 +1,9 @@
 package com.yc.util;
 
 public class ResultData {
+	//提示消息
 	private String msg;
+	//状态码
 	private Integer flag;
 	private Object data;
 	public String getMsg() {
