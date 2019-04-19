@@ -32,15 +32,20 @@
 			 <input	value="查 询" type="submit" id="searchbutton">
 			 <a href="${pageContext.request.contextPath }/bill/billadd">添加订单</a>
 		</form>
+		
        </div>
        <!--账单表格 样式和供应商公用-->
       <table class="providerTable" cellpadding="0" cellspacing="0">
           <tr class="firstTr">
               <th width="10%">订单编码</th>
-              <th width="20%">商品名称</th>
-              <th width="10%">供应商</th>
+              <th width="15%">供应商</th>
+              <th width="15%">商品名称</th> 
+              <th width="5%">商品单位</th>
+              <th width="10%">商品单价</th>  
+              <th width="10%">商品数量</th> 
+               
               <th width="10%">订单金额</th>
-              <th width="10%">是否付款</th>
+              <th width="5%">是否付款</th>
               <th width="10%">创建时间</th>
               <th width="30%">操作</th>
           </tr>
@@ -49,14 +54,29 @@
 					<td>
 					<span>${bill.billcode} </span>
 					</td>
-					<td>
-					<span>${bill.productname}</span>
-					</td>
+					
 					<td>
 					<span>${bill.proname}</span>
 					</td>
+					
 					<td>
-					<span>${bill.totalprice}</span>
+					<span>${bill.productname}</span>
+					</td>
+					
+					<td>
+					<span>${bill.productunit}</span>
+					</td>
+										
+					<td>
+					<span>${bill.totalprice/bill.productcount}￥</span>
+					</td>
+					
+					<td>
+					<span>${bill.productcount}</span>
+					</td>
+					
+					<td>
+					<span>${bill.totalprice}￥</span>
 					</td>
 					<td>
 					<span>${bill.ispayment==1?"未付款":"已付款"}</span>

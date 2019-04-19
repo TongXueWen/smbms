@@ -2,6 +2,9 @@ package com.yc.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import com.github.pagehelper.PageInfo;
 import com.yc.po.Bill;
 import com.yc.po.Provider;
@@ -47,4 +50,7 @@ public interface BillService {
 	 * @param id
 	 */
 	public int billDelect(Long id);
+	
+
+
 }

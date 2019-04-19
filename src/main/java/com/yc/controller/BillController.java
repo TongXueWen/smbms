@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageInfo;
 import com.yc.po.Bill;
@@ -113,8 +116,10 @@ public class BillController {
 	 * @return
 	 */
 	@RequestMapping("billdel")
-	public String userdel(@RequestParam("id") Long id){
+	public String billdel(@RequestParam("id") Long id){
 		billService.billDelect(id);
 		return "redirect:billlist";
 	}
+	
+	
 }
